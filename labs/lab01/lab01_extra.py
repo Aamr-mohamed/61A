@@ -14,7 +14,13 @@ def falling(n, k):
     >>> falling(4, 1)  # 4
     4
     """
-    "*** YOUR CODE HERE ***"
+    fact=1
+    while n>0 and k>0:
+        k=k-1
+        fact=fact*n
+        n=n-1   
+    return  fact
+
 
 def double_eights(n):
     """Return true if n has two eights in a row.
@@ -31,4 +37,18 @@ def double_eights(n):
     >>> double_eights(80808080)
     False
     """
-    "*** YOUR CODE HERE ***"
+    abl_a5r_rakam=False
+    while n>0:
+        a5r_rakam=n % 10
+        
+        if a5r_rakam==8 and abl_a5r_rakam:
+            return True
+        elif a5r_rakam==8:
+            abl_a5r_rakam=True
+        else:
+            abl_a5r_rakam=False
+        n=n//10
+    return False
+        
+            
+    
