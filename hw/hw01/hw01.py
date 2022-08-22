@@ -1,6 +1,6 @@
 """ Homework 1: Control """
 
-from operator import add, sub
+
 
 def a_plus_abs_b(a, b):
     """Return a+abs(b), but without calling abs.
@@ -10,11 +10,12 @@ def a_plus_abs_b(a, b):
     >>> a_plus_abs_b(2, -3)
     5
     """
+    f=1
     if b < 0:
-        f=a-b
-    if a<0:
-        f=a+b
-    return f(a, b)
+        f = a - b
+    else:
+        f = a + b
+    return f
 
 def two_of_three(a, b, c):
     """Return x*x + y*y, where x and y are the two largest members of the
@@ -41,11 +42,14 @@ def largest_factor(n):
     >>> largest_factor(13) # factor is 1 since 13 is prime
     1
     """
-    d = n - 1
-    while d > 0:
-    	if n % d == 0:
-    		return d
-    	d -= 1
+    factor=1
+    b=n-1
+    while b>=1:
+        if n%b==0:
+            factor=b
+            return factor
+        b=b-1
+
 
 def if_function(condition, true_result, false_result):
     """Return true_result if condition is a true value, and
@@ -89,13 +93,13 @@ def with_if_function():
     return if_function(c(), t(), f())
 
 def c():
-    "*** YOUR CODE HERE ***"
+    return False
 
 def t():
-    "*** YOUR CODE HERE ***"
+    print(1)    
 
 def f():
-    "*** YOUR CODE HERE ***"
+    print(2)
 
 def hailstone(n):
     """Print the hailstone sequence starting at n and return its
@@ -112,4 +116,17 @@ def hailstone(n):
     >>> a
     7
     """
-    "*** YOUR CODE HERE ***"
+    print(n)
+    length=1
+    while n>1:
+        if n%2==0:
+            n=n//2
+        else:
+            n=(n*3)+1
+        length=length+1
+        print (n)
+    return (length)
+print (hailstone(10))
+
+
+        
