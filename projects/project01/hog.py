@@ -249,23 +249,14 @@ def announce_highest(who, previous_high=0, previous_score=0):
     # BEGIN PROBLEM 7
 
     def say(score0, score1):
-        if who == 0:
-            curr_gain0 = score0 - previous_score
-            if curr_gain0 > previous_high:
-                print(curr_gain0, "point(s)! That's the biggest gain yet for Player 0")
-            elif curr_gain0 <= previous_high:
-                return say
-            elif score0 == previous_score:
-                return say
-        elif who == 1:
-            score_diff1 = score1 - previous_score
-            if score_diff1 > previous_high and score1 != previous_score:
-                print(score_diff1, "point(s)! That's the biggest gain yet for Player 1")
+        curr_score = score0 if who == 0 else score1
+        curr_gain = curr_score - previous_score
+        prev_high = curr_gain
+        if curr_gain > previous_high:
+            print(curr_gain, "point(s)! That's the biggest gain yet for Player", who)
 
-            # elif score_diff1 <= previous_high:
-            # return say
-
-        return announce_highest(who)
+            return announce_highest(who, prev_high, curr_score)
+        return announce_highest(who, previous_high, curr_score)
 
     return say
     # END PROBLEM 7
