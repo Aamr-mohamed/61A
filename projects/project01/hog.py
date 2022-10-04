@@ -2,6 +2,7 @@
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
+
 GOAL_SCORE = 100  # The goal of Hog is to score 100 points.
 ######################
 # Phase 1: Simulator #
@@ -251,12 +252,11 @@ def announce_highest(who, previous_high=0, previous_score=0):
     def say(score0, score1):
         curr_score = score0 if who == 0 else score1
         curr_gain = curr_score - previous_score
-        prev_high = curr_gain
+        prev_high = previous_high
         if curr_gain > previous_high:
             print(curr_gain, "point(s)! That's the biggest gain yet for Player", who)
-
-            return announce_highest(who, prev_high, curr_score)
-        return announce_highest(who, previous_high, curr_score)
+            prev_high = curr_gain
+        return announce_highest(who, prev_high, curr_score)
 
     return say
     # END PROBLEM 7
@@ -299,7 +299,18 @@ def make_averaged(fn, num_samples=1000):
     3.0
     """
     # BEGIN PROBLEM 8
-    "*** YOUR CODE HERE ***"
+    def new_func(*args):
+        count_fn = 0
+        num_sam = num_samples
+        while num_sam > 0:
+            count_fn += fn(*args)
+            average = count_fn / num_samples
+            num_sam -= 1
+        return average
+
+    # return calculate_average
+    return new_func
+
     # END PROBLEM 8
 
 
@@ -313,7 +324,19 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     1
     """
     # BEGIN PROBLEM 9
-    "*** YOUR CODE HERE ***"
+    def make_average(num_rolls, num_samples):
+        num_of_dice = 0
+        average = 0
+        max_average = 0
+        while num_of_dice < 10:
+            average = make_averaged(roll_dice, num_samples)
+            if max_average > average:
+                return num_of_dice
+            max_average = average
+            num_of_dice += 1
+
+    return make_average
+
     # END PROBLEM 9
 
 
