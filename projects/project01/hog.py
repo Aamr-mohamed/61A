@@ -1,4 +1,5 @@
 """CS 61A Presents The Game of Hog."""
+import re
 from dice import six_sided, four_sided, make_test_dice
 from ucb import main, trace, interact
 
@@ -324,19 +325,15 @@ def max_scoring_num_rolls(dice=six_sided, num_samples=1000):
     1
     """
     # BEGIN PROBLEM 9
-    def make_average(num_rolls, num_samples):
-        num_of_dice = 0
-        average = 0
-        max_average = 0
-        while num_of_dice < 10:
-            average = make_averaged(roll_dice, num_samples)
-            if max_average > average:
-                return num_of_dice
-            max_average = average
-            num_of_dice += 1
-
-    return make_average
-
+    num_of_dice = 1
+    max_average_score = 0
+    while num_of_dice <= 10:
+        score = make_averaged(roll_dice, num_samples)(num_of_dice, dice)
+        if score > max_average_score:
+            max_average_score = score
+            biggest_dice_num = num_of_dice
+        num_of_dice += 1
+    return biggest_dice_num
     # END PROBLEM 9
 
 
@@ -384,8 +381,13 @@ def bacon_strategy(score, opponent_score, margin=8, num_rolls=4):
     """This strategy rolls 0 dice if that gives at least MARGIN points, and
     rolls NUM_ROLLS otherwise.
     """
-    # BEGIN PROBLEM 10
-    return 4  # Replace this statement
+    # BEGIN PROBLEM 1
+    free_bacon_score = free_bacon(opponent_score)
+    if free_bacon_score >= margin:
+        return 0
+    else:
+        return num_rolls
+
     # END PROBLEM 10
 
 
@@ -395,7 +397,15 @@ def swap_strategy(score, opponent_score, margin=8, num_rolls=4):
     non-beneficial swap. Otherwise, it rolls NUM_ROLLS.
     """
     # BEGIN PROBLEM 11
-    return 4  # Replace this statement
+    free_bacon_score = free_bacon(opponent_score)
+    bacon_score = free_bacon_score + score
+    if bacon_score < opponent_score and is_swap(bacon_score, opponent_score):
+        return 0
+    elif free_bacon_score >= margin and is_swap(bacon_score, opponent_score) == False:
+        return 0
+    else:
+        return num_rolls
+
     # END PROBLEM 11
 
 
