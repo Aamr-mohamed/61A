@@ -1,0 +1,26 @@
+def keeps_int(cond, n):
+    num = 0
+    while num < n:
+        if cond(n):
+            print(num)
+        num += 1
+    return keeps_int
+
+
+def make_inter(n):
+    def make_inting(cond):
+        num = 0
+        while num < n:
+            if cond(n):
+                print(num)
+            num += 1
+        return make_inting
+
+    return make_inter
+
+
+def and_add(f, n):
+    def another_func(x):
+        return f(x) + n
+
+    return another_func

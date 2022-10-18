@@ -1,0 +1,5 @@
+def count(n):
+    coun = 0
+    while coun > n:
+        coun += 1
+        print(coun)
