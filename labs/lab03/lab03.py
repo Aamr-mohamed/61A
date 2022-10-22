@@ -1,7 +1,8 @@
 """ Lab 3: Recursion and Python Lists """
 
+
 def skip_add(n):
-    """ Takes a number x and returns x + x-2 + x-4 + x-6 + ... + 0.
+    """Takes a number x and returns x + x-2 + x-4 + x-6 + ... + 0.
 
     >>> skip_add(5)  # 5 + 3 + 1 + 0
     9
@@ -13,10 +14,18 @@ def skip_add(n):
     ...       ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return n + skip_add(n - 2)
 
 
 this_file = __file__
+
+counter = 0
+
 
 def hailstone(n):
     """Print out the hailstone sequence starting at n, and return the
@@ -38,7 +47,14 @@ def hailstone(n):
     ...       ['While', 'For'])
     True
     """
-    "*** YOUR CODE HERE ***"
+    print(n)
+    if n == 1:
+        return 1
+    elif n % 2 == 0:
+        return hailstone((n // 2)) + 1
+    elif n % 2 == 1:
+        return hailstone((n * 3) + 1) + 1
+
 
 def summation(n, term):
 
@@ -58,4 +74,7 @@ def summation(n, term):
     True
     """
     assert n >= 1
-    "*** YOUR CODE HERE ***"
+    if n == 1:
+        return term(1)
+    else:
+        return term(n) + summation(n - 1, term)
