@@ -217,19 +217,18 @@ def pingpong(n):
     >>> check(HW_SOURCE_FILE, 'pingpong', ['Assign', 'AugAssign'])
     True
     """
-    x = 1
-    element = 1
-    switcher = False
-    while x < n:
-        if num_sevens(x) or x % 7 == 0:
-            switcher = not switcher
-        if switcher:
-            element -= 1
-        else:
-            element += 1
-
-        x += 1
-    return element
+    # x = 1
+    # element = 1
+    # switcher = False
+    # while x < n:
+    #     if num_sevens(x) or x % 7 == 0:
+    #         switcher = not switcher
+    #     if switcher:
+    #         element -= 1
+    #     else:
+    #         element += 1
+    #     x += 1
+    # return element
 
 
 def count_change(amount):
